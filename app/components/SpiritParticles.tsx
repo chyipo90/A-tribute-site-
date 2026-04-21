@@ -22,7 +22,7 @@ export default function SpiritParticles() {
     fpsLimit: 60,
     particles: {
       number: {
-        value: 60, // How many particles on screen at once
+        value: 150, // How many particles on screen at once
         density: { enable: true }
       },
       color: {
@@ -44,24 +44,24 @@ export default function SpiritParticles() {
       },
       move: {
         enable: true,
-        direction: "top", // Rise upward
-        speed: { min: 0.3, max: 1.2 }, // Slow, gentle
-        straight: false, // Allow slight wobble
+        direction: "top",
+        speed: { min: 0.3, max: 1.0 },
+        straight: false,
         random: true,
-        outModes: { default: "destroy", top: "destroy" } // Disappear when leaving screen
-      }
+        outModes: { default: "destroy", top: "destroy" }
+      },
     },
     emitters: [
-      {
-        direction: "top",
-        rate: { delay: 0.2, quantity: 2 }, // Spawn rate
-        position: { x: 50, y: 80 }, // Spawn from bottom-center (where dog will be)
-        size: { width: 30, height: 10 }, // Spawn area size
-        particles: {
-          move: { speed: { min: 0.3, max: 1.2 } }
+        {
+          direction: "top",
+          rate: { delay: 0.05, quantity: 6 },
+          position: { x: 50, y: 95 },
+          size: { width: 90, height: 5 },
+          particles: {
+            move: { speed: { min: 0.4, max: 1.5 } }
+          }
         }
-      }
-    ],
+      ],
     detectRetina: true
   };
 
