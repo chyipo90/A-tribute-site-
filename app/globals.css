@@ -13,16 +13,16 @@
   --overlay: rgba(10, 14, 26, 0.7);
 }
 
-/* Alt Mode — reddish, Stranger Things abyss */
+/* Alt Mode — somber, "old blood," moral reckoning (not horror) */
 [data-theme="alt"] {
-  --bg-primary: #1a0505;
-  --bg-secondary: #2d0a0a;
-  --text-primary: #f0c4c4;
-  --text-secondary: #b85c5c;
-  --accent: #e63946;
-  --accent-glow: #ff6b6b;
-  --light-ray: #ff4444cc;
-  --overlay: rgba(26, 5, 5, 0.7);
+  --bg-primary: #0a0505;
+  --bg-secondary: #1a0a0a;
+  --text-primary: #d4a5a5;
+  --text-secondary: #8a4a4a;
+  --accent: #b8312d;
+  --accent-glow: #d93d3a;
+  --light-ray: #a8302ccc;
+  --overlay: rgba(10, 5, 5, 0.75);
 }
 
 /* ===== BASE STYLES ===== */
@@ -38,4 +38,36 @@ body {
   font-family: 'Inter', sans-serif;
   min-height: 100vh;
   transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* ===== RITUAL BUTTON — thin glowing portal aesthetic ===== */
+.spirit-button {
+  box-shadow: 0 0 20px -5px var(--accent-glow);
+}
+
+.spirit-button:hover {
+  opacity: 1;
+  box-shadow: 0 0 30px -4px var(--accent-glow), inset 0 0 20px -8px var(--accent-glow);
+  background-color: rgba(124, 185, 232, 0.18);
+  color: #ffffff;
+}
+
+[data-theme="alt"] .spirit-button:hover {
+  background-color: rgba(184, 49, 45, 0.2);
+  color: #ffffff;
+}
+/* ===== Theme visibility classes ===== */
+/* Elements with theme-main-only are hidden when Alt Mode is active */
+[data-theme="alt"] .theme-main-only {
+  display: none;
+}
+
+/* Elements with theme-alt-only are hidden by default (Main Mode) */
+.theme-alt-only {
+  display: none;
+}
+
+/* Elements with theme-alt-only become visible when Alt Mode is active */
+[data-theme="alt"] .theme-alt-only {
+  display: flex;
 }

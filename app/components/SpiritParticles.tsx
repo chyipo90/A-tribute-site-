@@ -4,29 +4,34 @@ import { useEffect, useState } from "react";
 import { initParticlesEngine, Particles } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import type { ISourceOptions } from "@tsparticles/engine";
+import { useTheme } from "./ThemeContext";
 
 export default function SpiritParticles() {
   const [ready, setReady] = useState(false);
+  const { theme } = useTheme();
 
-  // Initialize the particle engine once on component mount
   useEffect(() => {
     initParticlesEngine(async (engine) => {
       await loadSlim(engine);
     }).then(() => setReady(true));
   }, []);
 
-  // Particle configuration — this is where the "spirit" look is defined
+  // Theme-aware configuration
+  const isAlt = theme === "alt";
+
   const options: ISourceOptions = {
-    fullScreen: { enable: false }, // We control the container size ourselves
+    fullScreen: { enable: false },
     background: { color: { value: "transparent" } },
     fpsLimit: 60,
     particles: {
       number: {
-        value: 150, // How many particles on screen at once
-        density: { enable: true }
+        value: 230,
+        density: { enable: true },
       },
       color: {
-        value: ["#ffffff", "#b6d8f2", "#7cb9e8"] // White + soft blues
+        value: isAlt
+          ? ["#b8312d", "#8a2521", "#5a1a18"]   // Alt: old blood, rust, scorched
+          : ["#ffffff", "#b6d8f2", "#7cb9e8"],  // Main: white + soft blues
       },
       shape: { type: "circle" },
       opacity: {
@@ -36,33 +41,40 @@ export default function SpiritParticles() {
           speed: 1,
           sync: false,
           startValue: "min",
-          destroy: "min"
-        }
+          destroy: "min",
+        },
       },
       size: {
-        value: { min: 1, max: 3 } // Small, subtle
+        value: { min: 1, max: 3 },
       },
       move: {
         enable: true,
-        direction: "top",
+        direction: isAlt ? "bottom" : "top",  // Alt: descending, Main: rising
         speed: { min: 0.3, max: 1.0 },
         straight: false,
         random: true,
-        outModes: { default: "destroy", top: "destroy" }
+        outModes: isAlt
+          ? { default: "destroy", bottom: "destroy" }
+          : { default: "destroy", top: "destroy" },
       },
     },
     emitters: [
-        {
-          direction: "top",
-          rate: { delay: 0.05, quantity: 6 },
-          position: { x: 50, y: 95 },
-          size: { width: 90, height: 5 },
-          particles: {
-            move: { speed: { min: 0.4, max: 1.5 } }
-          }
-        }
-      ],
-    detectRetina: true
+      {
+        direction: isAlt ? "bottom" : "top",
+        rate: { delay: 0.05, quantity: 6 },
+        position: isAlt
+          ? { x: 50, y: 5 }   // Alt: spawn from top
+          : { x: 50, y: 95 }, // Main: spawn from bottom
+        size: { width: 90, height: 5 },
+        particles: {
+          move: {
+            speed: { min: 0.4, max: 1.5 },
+            direction: isAlt ? "bottom" : "top",
+          },
+        },
+      },
+    ],
+    detectRetina: true,
   };
 
   if (!ready) return null;
@@ -71,6 +83,7 @@ export default function SpiritParticles() {
     <Particles
       id="spirit-particles"
       options={options}
+      options-key={theme}  // Force re-init when theme changes
       className="absolute inset-0 pointer-events-none"
     />
   );
