@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import SpiritParticles from "./components/SpiritParticles";
 import ThemeToggle from "./components/ThemeToggle";
 
@@ -71,21 +71,23 @@ export default function Home() {
           >
             Every animal who leaves this world leaves a light behind — soft, eternal, woven into the air around us. Their souls rise to the heavens. Their light remains, seen only by those who know where to look.
           </p>
-          <button
-            className="rounded-full transition-all duration-500 cursor-pointer spirit-button"
-            style={{
-              color: "var(--text-primary)",
-              border: "2.5px solid var(--accent)",
-              letterSpacing: "0.15em",
-              opacity: 0.9,
-              padding: "18px 56px",
-              fontSize: "15px",
-              fontWeight: 400,
-              lineHeight: 1.2,
-            }}
-          >
-            See the Light
-          </button>
+          <Link href="/see-the-light" style={{ display: "inline-block" }}>
+  <button
+    className="rounded-full transition-all duration-500 cursor-pointer spirit-button"
+    style={{
+      color: "var(--text-primary)",
+      border: "2.5px solid var(--accent)",
+      letterSpacing: "0.15em",
+      opacity: 0.9,
+      padding: "18px 56px",
+      fontSize: "15px",
+      fontWeight: 400,
+      lineHeight: 1.2,
+    }}
+  >
+    See the Light
+  </button>
+</Link>
         </div>
 
         {/* Alt Mode legend + button */}
@@ -102,21 +104,23 @@ export default function Home() {
           >
             Every soul who breaks a light pays a weight behind — heavy, eternal, carved into the earth beneath us. Their souls descend to the depths. Their weight remains, felt only by those who know where to look.
           </p>
-          <button
-            className="rounded-full transition-all duration-500 cursor-pointer spirit-button"
-            style={{
-              color: "var(--text-primary)",
-              border: "2.5px solid var(--accent)",
-              letterSpacing: "0.15em",
-              opacity: 0.9,
-              padding: "18px 56px",
-              fontSize: "15px",
-              fontWeight: 400,
-              lineHeight: 1.2,
-            }}
-          >
-            Serve the Justice
-          </button>
+          <Link href="/see-the-light" style={{ display: "inline-block" }}>
+  <button
+    className="rounded-full transition-all duration-500 cursor-pointer spirit-button"
+    style={{
+      color: "var(--text-primary)",
+      border: "2.5px solid var(--accent)",
+      letterSpacing: "0.15em",
+      opacity: 0.9,
+      padding: "18px 56px",
+      fontSize: "15px",
+      fontWeight: 400,
+      lineHeight: 1.2,
+    }}
+  >
+    Serve the Justice
+  </button>
+</Link>
         </div>
       </div>
     </main>
