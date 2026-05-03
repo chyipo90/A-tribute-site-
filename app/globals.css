@@ -12,6 +12,7 @@
   --light-ray: #ffffffcc;
   --overlay: rgba(10, 14, 26, 0.7);
   --map-color: #4a6890;
+  --particle-color: #b8d4e8;
 }
 
 [data-theme="alt"] {
@@ -24,6 +25,7 @@
   --light-ray: #a8302ccc;
   --overlay: rgba(10, 5, 5, 0.75);
   --map-color: #5a3838;
+  --particle-color: #8a4a4a;
 }
 
 /* ===== BASE STYLES ===== */
