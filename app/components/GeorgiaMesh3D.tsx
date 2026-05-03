@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { ExtrudeGeometry, Shape } from "three";
+import { Shape } from "three";
 import { SVGLoader } from "three/examples/jsm/loaders/SVGLoader.js";
 import { GEORGIA_REGIONS, GEORGIA_VIEWBOX } from "./georgia-paths";
 
@@ -17,6 +17,14 @@ const VIEWBOX_WIDTH = VIEWBOX_PARTS[2];
 const VIEWBOX_HEIGHT = VIEWBOX_PARTS[3];
 const CENTER_X = VIEWBOX_WIDTH / 2;
 const CENTER_Y = VIEWBOX_HEIGHT / 2;
+
+// Visual tuning constants — change these to recompose the scene.
+// Locked via interactive arrow-key tuning (Chat 6b). Likely to be revisited
+// once theme materials and atmospheric particles change the visual weight.
+const SCALE = 0.032;          // SVG units → world units; controls map size
+const RIGHT_OFFSET = -3.25;   // World-space X shift; positive = right, negative = left
+const FORWARD_OFFSET = 0;     // World-space Z shift; positive = toward camera, negative = away
+const Y_LIFT = 0.01;          // Tiny vertical offset to avoid z-fighting if a plane is added
 
 function useGeorgiaShapes(): Shape[] {
   return useMemo(() => {
@@ -43,12 +51,17 @@ export default function GeorgiaMesh3D() {
   return (
     <group
       // Order of transforms (applied right-to-left visually):
-      // 1. position offsets the entire group so SVG-space center sits at world origin
-      // 2. scale shrinks SVG units (~800 wide) into 3D scene units (~16 wide)
-      // 3. rotation lays the country flat on the XZ plane
+      // 1. position offsets the entire group: -CENTER_X * SCALE centers the SVG horizontally,
+      //    + RIGHT_OFFSET nudges the whole map left/right of world origin.
+      // 2. scale shrinks SVG units (~800 wide) into 3D scene units.
+      // 3. rotation lays the country flat on the XZ plane.
       rotation={[-Math.PI / 2, 0, 0]}
-      scale={[0.02, 0.02, 0.02]}
-      position={[-CENTER_X * 0.02, 0.01, CENTER_Y * 0.02]}
+      scale={[SCALE, SCALE, SCALE]}
+      position={[
+        -CENTER_X * SCALE + RIGHT_OFFSET,
+        Y_LIFT,
+        CENTER_Y * SCALE + FORWARD_OFFSET,
+      ]}
     >
       {shapes.map((shape, i) => (
         <mesh key={i}>
