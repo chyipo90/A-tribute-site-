@@ -2,6 +2,8 @@
 
 import { Canvas } from "@react-three/fiber";
 import GeorgiaMesh3D from "@/app/components/GeorgiaMesh3D";
+import AtmosphericParticles from "@/app/components/AtmosphericParticles";
+
 
 export default function SeeTheLightPage() {
   return (
@@ -24,6 +26,7 @@ export default function SeeTheLightPage() {
 
         {/* Georgia */}
         <GeorgiaMesh3D />
+        <AtmosphericParticles />
       </Canvas>
     </main>
   );
