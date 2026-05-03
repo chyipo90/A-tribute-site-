@@ -11,9 +11,9 @@
   --accent-glow: #b6d8f2;
   --light-ray: #ffffffcc;
   --overlay: rgba(10, 14, 26, 0.7);
+  --map-color: #4a6890;
 }
 
-/* Alt Mode — somber, "old blood," moral reckoning (not horror) */
 [data-theme="alt"] {
   --bg-primary: #0a0505;
   --bg-secondary: #1a0a0a;
@@ -23,6 +23,7 @@
   --accent-glow: #d93d3a;
   --light-ray: #a8302ccc;
   --overlay: rgba(10, 5, 5, 0.75);
+  --map-color: #5a3838;
 }
 
 /* ===== BASE STYLES ===== */
