@@ -19,14 +19,7 @@ export default function SeeTheLightPage() {
         {/* Lights */}
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 10, 5]} intensity={1} />
-
-        {/* Ground plane */}
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
-          <planeGeometry args={[20, 20]} />
-          <meshStandardMaterial color="#1a1a2e" />
-        </mesh>
-
-        {/* Georgia */}
+              {/* Georgia */}
         <GeorgiaMesh3D />
 
         {/* Camera controls — drag to orbit, scroll to zoom */}
