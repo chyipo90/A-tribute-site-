@@ -20,7 +20,7 @@ const CENTER_Y = VIEWBOX_HEIGHT / 2;
 
 // Visual tuning constants. Locked via interactive arrow-key tuning (Chat 6b).
 const SCALE = 0.032;
-const RIGHT_OFFSET = -3.25;
+export const RIGHT_OFFSET = -3.25;
 const FORWARD_OFFSET = 0;
 const Y_LIFT = 0.01;
 
