@@ -32,13 +32,13 @@ function createCircleTexture(): THREE.Texture {
   return texture;
 }
 
-const PARTICLE_COUNT = 120;
+const PARTICLE_COUNT = 165;
 
 // Spawn volume matches the camera's view of the scene.
 // Georgia is wide & shallow at our locked camera angle — wider on X, narrower on Y,
 // similar to X on Z (so atmospheric particles surround the map in front-to-back depth too).
 const FIELD_X = 30;  // horizontal — wider than cube, covers full Georgia width
-const FIELD_Y = 8;   // vertical — narrower, particles cluster near the map's vertical band
+const FIELD_Y = 6;   // vertical — narrower, particles cluster near the map's vertical band
 const FIELD_Z = 12;  // depth — front-to-back of scene
 
 const FIELD_X_HALF = FIELD_X / 2;
